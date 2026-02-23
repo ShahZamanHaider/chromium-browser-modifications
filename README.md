@@ -1,4 +1,4 @@
-# Custom Chromium Build Patches
+# Custom Chromium Source Code Modifications
 
 <p align="center">
   Chromium Source Code Customization • Settings • Custom URL's • Custom Branding
