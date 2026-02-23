@@ -1,0 +1,66 @@
+// Copyright 2014 The Chromium Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+
+//MODIFIED BY SHAH ZAMAN HAIDER
+//https://github.com/ShahZamanHaider
+
+
+
+// This file is used during build to generate prepopulated_engines.h/cc.
+// For more details see tools/json_to_struct/json_to_struct.py.
+
+// Engine definitions. See prepopulated_engines_schema.json for the field
+// definitions.
+
+// NOTES:
+//   - CHANGE THE BELOW NUMBERS IF YOU ADD A NEW ENGINE; ID conflicts = bad!
+//     - Make sure you update the int_variables below as described in comments.
+//     - IDs > 1000 are reserved for distribution custom engines.
+//   - NOTIFY the Chrome Webstore team if you add/delete a search engine or
+//     change domain of an existing one (send email to webstore-eng@google.com).
+//     They need to know the mapping between an engine's "id" and its URLs.
+//   - Use HTTPS URLs when adding new search engines or adding URLs to existing
+//     ones. It's not the 90s anymore.
+
+{
+  "int_variables": {
+    // When adding new engines, increment this number and use it as the new
+    // max ID. This is used by UMA stats and must be updated to include the full
+    // range or else not all engines will be counted in stats.
+    "kMaxPrepopulatedEngineID": 1,
+
+    // Increment this if you change the data in ways that mean users with
+    // existing data should get a new version. Otherwise, existing data may
+    // continue to be used and updates made here will not always appear.
+    "kCurrentDataVersion": 140
+  },
+
+  // The following engines are included in country lists and are added to the
+  // list of search engines on the first run depending on user's country.
+  "elements": {
+    
+
+    "google": {
+      "name": "Safe",
+      "keyword": "safe.com",
+      "favicon_url": "https://i.imgur.com/xpCEyFc.png",
+      "search_url": "https://cse.google.com/cse?cx=b7137968dddc045ce#gsc.tab=0&gsc.q={searchTerms}&gsc.sort=",
+      "new_tab_url": "https://cse.google.com/cse?cx=b7137968dddc045ce#gsc.tab=0",
+      "type": "SEARCH_ENGINE_GOOGLE",
+      "preconnect_to_search_url" : "ALLOWED",
+      "prefetch_likely_navigations" : "ALLOWED",
+      "id": 1
+    }
+
+},
+
+
+  "generate_array": {
+    "array_name": "kAllEngines"
+  }
+
+}
+

@@ -1,0 +1,132 @@
+//MODIFIED BY SHAH ZAMAN HAIDER
+//https://github.com/ShahZamanHaider
+
+
+    <style include="cr-shared-style settings-shared iron-flex">
+      settings-omnibox-extension-entry {
+        border-top: var(--cr-separator-line);
+      }
+    </style>
+    <div class="cr-row first">
+      <div class="secondary">You can use shortcuts in the address bar to quickly search a specific site</div>
+    </div>
+    <div class="cr-row first">
+      <div class="flex cr-padded-text">
+        <div id="keyboardShortcutsTitle">
+          $i18n{searchEnginesKeyboardShortcutsTitle}
+        </div>
+        <div class="secondary">
+          In the address/search bar, use this keyboard shortcut with shortcuts for site search
+        </div>
+      </div>
+    </div>
+    <div class="list-frame">
+      <settings-radio-group id="keyboardShortcutSettingGroup"
+          pref="{{prefs.omnibox.keyword_space_triggering_enabled}}"
+          on-change="onKeyboardShortcutSettingChange_">
+        <controlled-radio-button class="list-item" name="true"
+            pref="{{prefs.omnibox.keyword_space_triggering_enabled}}"
+            label="$i18n{searchEnginesKeyboardShortcutsSpaceOrTab}"
+            aria-labelledby="keyboardShortcutsTitle"
+            no-extension-indicator>
+        </controlled-radio-button>
+        <controlled-radio-button class="list-item" name="false"
+            pref="{{prefs.omnibox.keyword_space_triggering_enabled}}"
+            label="$i18n{searchEnginesKeyboardShortcutsTab}"
+            aria-labelledby="keyboardShortcutsTitle"
+            no-extension-indicator>
+        </controlled-radio-button>
+      </settings-radio-group>
+    </div>
+
+    <div class="cr-row first">
+      <div class="flex cr-padded-text">
+        <h2>Search Engine</h2>
+        <div class="secondary">
+         Experience the web with Safe as your default search engine. Enjoy secure and safe search results at your fingertips.
+        </div>
+      </div>
+    </div>
+    <settings-search-engines-list hidden="[[!matchingDefaultEngines_.length]]"
+        engines="[[matchingDefaultEngines_]]"
+        show-shortcut name-column-header="$i18n{searchEnginesSearchEngine}">
+    </settings-search-engines-list>
+
+    <div class="no-search-results list-frame"
+        hidden="[[matchingDefaultEngines_.length]]">
+      $i18n{searchNoResults}
+    </div>
+
+    <template is="dom-if" if="[[showEditDialog_]]" restamp>
+      <settings-search-engine-edit-dialog model="[[dialogModel_]]"
+          on-close="onCloseEditDialog_">
+      </settings-search-engine-edit-dialog>
+    </template>
+
+    <template is="dom-if" if="[[showDeleteConfirmationDialog_]]" restamp>
+      <settings-simple-confirmation-dialog id="deleteConfirmDialog"
+          title-text="$i18n{searchEnginesDeleteConfirmationTitle}"
+          body-text="$i18n{searchEnginesDeleteConfirmationDescription}"
+          confirm-text="$i18n{delete}"
+          on-close="onCloseDeleteConfirmationDialog_">
+      </settings-simple-confirmation-dialog>
+    </template>
+
+    <div class="cr-row first">
+        <div class="flex cr-padded-text">
+          <h2>$i18n{searchEnginesSiteSearch}</h2>
+          <div class="secondary">$i18n{searchEnginesSiteSearchExplanation}</div>
+        </div>
+        
+    </div>
+    <div id="noActiveEngines" class="list-frame"
+           hidden="[[activeEngines.length]]">
+          $i18n{searchEnginesNoSitesAdded}
+    </div>
+    <div class="no-search-results list-frame"
+           hidden="[[!showNoResultsMessage_(
+          activeEngines, matchingActiveEngines_)]]">
+          $i18n{searchNoResults}
+    </div>
+    <settings-search-engines-list id="activeEngines"
+        hidden="[[!matchingActiveEngines_.length]]"
+        engines="[[matchingActiveEngines_]]"
+        scroll-target="[[subpageScrollTarget]]"
+        show-shortcut collapse-list
+        expand-list-text="$i18n{searchEnginesAdditionalSites}"
+        name-column-header="$i18n{searchEnginesSiteOrPage}">
+    
+
+    <div id="noOtherEngines" class="list-frame"
+        hidden="[[otherEngines.length]]">
+      $i18n{searchEnginesNoOtherEngines}
+    </div>
+    <div class="no-search-results list-frame"
+        hidden="[[!showNoResultsMessage_(
+            otherEngines, matchingOtherEngines_)]]">
+      $i18n{searchNoResults}
+    </div>
+
+    <template is="dom-if" if="[[showExtensionsList_]]">
+      <div class="cr-row first">
+        <div class="flex cr-padded-text">
+          <h2 class="flex">$i18n{searchEnginesExtension}</h2>
+          <div class="secondary"> $i18n{searchEnginesExtensionExplanation}</div>
+        </div>
+      </div>
+      <div class="no-search-results list-frame"
+          hidden="[[matchingExtensions_.length]]">
+        $i18n{searchNoResults}
+      </div>
+      <iron-list id="extensions" class="extension-engines list-frame"
+          items="[[matchingExtensions_]]" preserve-focus risk-selection>
+        <template>
+          <settings-omnibox-extension-entry engine="[[item]]"
+              focus-row-index="[[index]]"
+              tabindex$="[[tabIndex]]" iron-list-tab-index="[[tabIndex]]"
+              last-focused="{{omniboxExtensionlastFocused_}}"
+              list-blurred="{{omniboxExtensionListBlurred_}}">
+          </settings-omnibox-extension-entry>
+        </template>
+      </iron-list>
+    </template>
