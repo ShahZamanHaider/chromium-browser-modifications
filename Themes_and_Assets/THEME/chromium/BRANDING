@@ -1,0 +1,10 @@
+COMPANY_FULLNAME=The Safe Browser Authors
+COMPANY_SHORTNAME=The Safe Authors
+PRODUCT_FULLNAME=Safe Browser
+PRODUCT_SHORTNAME=Safe
+PRODUCT_INSTALLER_FULLNAME=Safe Browser Installer
+PRODUCT_INSTALLER_SHORTNAME=Safe Installer
+COPYRIGHT=Copyright @LASTCHANGE_YEAR@ The Safe Authors. All rights reserved.
+MAC_BUNDLE_ID=org.safe.Chromium
+MAC_CREATOR_CODE=Cr24
+MAC_TEAM_ID=
