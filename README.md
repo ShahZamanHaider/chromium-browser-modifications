@@ -1,8 +1,32 @@
 # Custom Chromium Build Patches
 
+<p align="center">
+  Chromium Source Code Customization • Settings • Custom URL's • Custom Branding
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-C++-blue">
+  <img src="https://img.shields.io/badge/Build-GN%20%7C%20Ninja-orange">
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey">
+  <img src="https://img.shields.io/badge/Engine-Chromium-green">
+  <img src="https://img.shields.io/badge/Project-Type%20%3A%20System%20Modification-success">
+</p>
+
+---
+
+## 📖 Overview
+
 This project contains a comprehensive collection of C++ tools, JSON configurations, GN build files, and UI modifications used to create a deeply customized, secure, and custom-branded version of the open-source Chromium browser.
 
 The Chromium codebase is extremely large, containing tens of millions of lines of code. Working with it requires a strong understanding of large-scale C++ architecture, the GN/Ninja build system, and cross-platform OS integration. These patches were developed after several months of studying and reverse-engineering the Chromium source structure to build a browser tailored for specific security, UI, and branding needs.
+
+---
+
+## 🧭 Table of Contents
+
+- [Key Features](#key-features)
+- [Repository Structure & How It Works](#-repository-structure--how-it-works)
+- [Usage Instructions](#️-usage-instructions)
 
 ---
 
@@ -98,6 +122,8 @@ This folder contains the visual assets required to compile the new imagery direc
 
 **Note:** You must have the Chromium `depot_tools` installed and a full source tree fetched before applying these patches.
 
+---
+
 ### Step 1 — Fetch the Source Code
 Download and set up the official Chromium source tree on your local machine using standard Chromium build instructions.
 
@@ -108,7 +134,6 @@ Compile and run the custom `script.c++` file, pointing the directory paths in th
 Copy the respective target files from this repository's folders and replace the original files inside your local `src/` tree.
 
 ### Step 4 — Build Chromium
-Recompile the newly modified browser using Ninja:
 
 ```bash
 autoninja -C out/Default chrome
